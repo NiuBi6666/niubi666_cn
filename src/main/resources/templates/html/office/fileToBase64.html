@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>文件转换Base64</title>
+    <link rel="stylesheet" th:href="@{/layui/css/layui.css}">
+    <link rel="shortcut icon" href="../../../layui/images/photo/666.png">
+</head>
+<script th:src="@{/layui/layui.js}"></script>
+<body>
+<fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+    <legend>文件转换Base64</legend>
+</fieldset>
+
+<blockquote class="layui-elem-quote">时间就是性命，无端的空耗别人的时间，其实是无异于谋财害命的。</blockquote>
+
+<div class="layui-form" id="fileTransForm" style="width: 80%;left: 2%;">
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">选择文件<label style="color: red">*</label></label>
+        <div class="layui-input-block">
+            <button type="button" class="layui-btn layui-btn-danger layui-btn-radius layui-btn-normal"
+                    id="fileToBase64"><i
+                    class="layui-icon"></i>上传文件
+            </button>
+        </div>
+    </div>
+    <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">Base64</label>
+        <div class="layui-input-block">
+            <textarea class="layui-textarea" id="base64"></textarea>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block layui-inline">
+            <button class="layui-btn layui-btn-radius layui-btn-normal" lay-submit lay-filter="fileToBase64"
+                    id="submit">立即提交
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+    layui.use(['upload', 'form', 'layer'], function () {
+        var $ = layui.jquery,
+            upload = layui.upload,
+            layer = layui.layer;
+        var loadIndex = null;
+        //文件上传
+        var uploadInst = upload.render({
+            elem: '#fileToBase64'
+            , url: 'format/fileToBase64' //改成您自己的上传接口
+            , auto: false
+            , bindAction: '#submit'
+            , size: 10240 //限制文件大小，单位 KB
+            , accept: 'file'
+            , before: function (obj) {
+                // layer.load(); //上传loading
+                this.data = {};
+                loadIndex = layer.load(); //上传loading
+                console.log(this.data);
+            }
+            , done: function (res) {
+                layer.close(loadIndex);
+                console.log(res);
+                //如果上传失败
+                if (res.code == 200) {
+                    $('#base64').val(res.data);
+                    return layer.msg('转换成功', {icon: 6});
+                } else {
+                    return layer.msg(res.message, {icon: 2, shift: 6});
+                }
+            }
+        });
+
+    });
+
+
+</script>
+</body>
+</html>

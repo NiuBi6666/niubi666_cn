@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>个人简历</title>
+    <link rel="shortcut icon" href="#"/>
+    <style type="text/css">
+        .resume-word {
+            padding-top: 20px;
+            padding-left: 10px;
+        }
+
+        .resume-logo-li {
+            padding-right: 10px;
+        }
+
+        .resume-logo {
+            width: 88px;
+            height: 88px;
+        }
+
+        .skill-logo {
+            width: 50px;
+            height: 50px;
+        }
+
+        .skill-logo-div {
+            text-align: center;
+        }
+
+        .skill-logo-div-next-line {
+            margin-top: 10px;
+        }
+
+        .personal-skills-p {
+            width: 80%;
+            padding-left: 10%;
+        }
+    </style>
+    <link rel="stylesheet" href="./layui/css/layui.css" media="all">
+    <link rel="shortcut icon" href="./layui/images/photo/666.png">
+</head>
+<script th:src="@{/layui/layui.js}"></script>
+<body>
+
+
+<!-- 表头开始 -->
+<div class="layui-header">
+    <div class="layui-logo layui-hide-xs resume-word">
+        <h1 class="layui-font-60">个人简历</h1>
+    </div>
+    <!-- 头像开始 -->
+    <ul class="layui-layout-right">
+        <li class="layui-nav-item resume-logo-li">
+            <img src="./layui/images/photo/IDPhoto.jpg" class="layui-nav-img" style="height: 88px;width: 88px;">
+        </li>
+    </ul>
+    <!-- 头像结束 -->
+</div>
+<!-- 表头结束 -->
+
+<form class="layui-form" action="">
+
+    <!--个人信息开始-->
+    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+        <legend class="layui-text layui-font-black">个人信息</legend>
+    </fieldset>
+
+    <div class="layui-form-item">
+        <!--姓名开始-->
+        <div class="layui-inline">
+            <label class="layui-form-label layui-text layui-font-black">姓名*</label>
+            <div class="layui-input-inline">
+                <input type="tel" name="phone" lay-verify="required|phone" autocomplete="off"
+                       class="layui-input layui-text layui-font-black" value="李修广">
+            </div>
+        </div>
+        <!--姓名结束-->
+        <!-- 手机号开始 -->
+        <div class="layui-inline">
+            <label class="layui-form-label layui-text layui-font-black">手机号*</label>
+            <div class="layui-input-inline">
+                <input type="text" name="email" lay-verify="email" autocomplete="off"
+                       class="layui-input layui-text layui-font-black" value="18663020327">
+            </div>
+        </div>
+        <!-- 手机号结束 -->
+        <!-- 性别开始 -->
+        <div class="layui-inline">
+            <label class="layui-form-label layui-text layui-font-black">性别*</label>
+            <div class="layui-input-inline layui-text layui-font-black">
+                <input type="radio" name="sex" value="男" title="男" checked="">
+                <input type="radio" name="sex" value="女" title="女" disabled="">
+            </div>
+        </div>
+        <!-- 性别结束 -->
+        <!-- 邮箱开始 -->
+        <div class="layui-inline">
+            <label class="layui-form-label layui-text layui-font-black">邮箱*</label>
+            <div class="layui-input-inline">
+                <input type="text" name="email" lay-verify="email" autocomplete="off"
+                       class="layui-input layui-text layui-font-black" value="China_xgli@163.com">
+            </div>
+        </div>
+        <!-- 邮箱结束 -->
+        <!-- 毕业院校开始 -->
+        <div class="layui-inline">
+            <label class="layui-form-label layui-text layui-font-black">毕业院校*</label>
+            <div class="layui-input-inline">
+                <input type="text" name="email" lay-verify="email" autocomplete="off"
+                       class="layui-input layui-text layui-font-black" value="贵州大学">
+            </div>
+        </div>
+        <!-- 毕业院校结束 -->
+        <!-- 毕业日期开始 -->
+        <div class="layui-inline">
+            <label class="layui-form-label layui-text layui-font-black">毕业日期*</label>
+            <div class="layui-input-inline">
+                <input type="text" name="email" lay-verify="email" autocomplete="off"
+                       class="layui-input layui-text layui-font-black" value="2017-07-01">
+            </div>
+        </div>
+        <!-- 毕业日期结束 -->
+        <!-- 工作年限开始 -->
+        <div class="layui-inline">
+            <label class="layui-form-label layui-text layui-font-black">工作年限*</label>
+            <div class="layui-input-inline">
+                <input type="text" name="email" lay-verify="email" autocomplete="off"
+                       class="layui-input layui-text layui-font-black" value="4年">
+            </div>
+        </div>
+        <!-- 工作年限结束 -->
+        <!-- 政治面貌开始 -->
+        <div class="layui-inline">
+            <label class="layui-form-label layui-text layui-font-black">政治面貌*</label>
+            <div class="layui-input-inline">
+                <input type="text" name="email" lay-verify="email" autocomplete="off"
+                       class="layui-input layui-text layui-font-black" value="中共党员">
+            </div>
+        </div>
+        <!-- 政治面貌结束 -->
+        <!-- 技能开始 -->
+        <div class="layui-form-item">
+            <label class="layui-form-label layui-text layui-font-black">爱好</label>
+            <div class="layui-input-block layui-text layui-font-black">
+                <input type="checkbox" name="like[game]" title="计算机" checked="">
+                <input type="checkbox" name="like[game]" title="网球" checked="">
+                <input type="checkbox" name="like[game]" title="跑步" checked="">
+                <input type="checkbox" name="like[write]" title="看书" checked="">
+                <input type="checkbox" name="like[write]" title="逛论坛" checked="">
+                <!-- <input type="checkbox" name="like[read]" title="数码测评" checked=""> -->
+            </div>
+        </div>
+        <!-- 技能结束 -->
+    </div>
+    <!--个人信息结束-->
+
+
+    <!-- 工作经历开始 -->
+    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+        <legend class="layui-text layui-font-black">工作经历</legend>
+    </fieldset>
+    <div class="layui-table layui-bg-black">
+        <table class="layui-table" style="margin: 0 auto;">
+            <colgroup>
+                <col width="40%">
+                <col width="30%">
+                <col width="30%">
+                <col>
+            </colgroup>
+            <thead class="layui-text layui-font-black">
+            <tr class="layui-bg-green">
+                <th>公司名称</th>
+                <th>职务</th>
+                <th>时间</th>
+            </tr>
+            </thead>
+            <tbody class="layui-text layui-font-black">
+            <tr>
+                <td>北京商兆科技有限公司</td>
+                <td>Java开发工程师</td>
+                <td>2020年06月-至今</td>
+            </tr>
+            <tr>
+                <td>北京盈轻舟科技有限公司</td>
+                <td>Java开发工程师</td>
+                <td>2019年05月-2020年01月</td>
+            </tr>
+            <tr>
+                <td>北京信思贤科技有限公司</td>
+                <td>Java开发工程师</td>
+                <td>2018年09月-2019年01月</td>
+            </tr>
+            <tr>
+                <td>当当网信息技术（贵州）有限公司</td>
+                <td>实习生</td>
+                <td>2017年07月-2018年07月</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- 工作经历结束 -->
+
+
+    <!-- 项目经验开始 -->
+    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+        <legend class="layui-text layui-font-black">项目经验</legend>
+    </fieldset>
+    <div class="layui-form-item">
+        <ul class="layui-timeline">
+            <!-- 山东城商行联盟开始 -->
+            <li class="layui-timeline-item">
+                <i class="layui-icon layui-timeline-axis"></i>
+                <div class="layui-timeline-content layui-text">
+                    <h3 class="layui-timeline-title">项目名称：山东省城市商业银行合作联盟有限公司-电子营业执照系统</h3>
+                    <h4 class="layui-timeline-title">开发周期：2021年04月-至今</h4>
+                    <!--         <h4 class="layui-timeline-title">开发环境：IDEA2019、JDK1.8、达梦数据库、MySQL、Git；</h4>
+                            <h4 class="layui-timeline-title">使用技术：SpringBoot、mybatis等；</h4> -->
+                    <h4 class="layui-timeline-title">项目简介：</h4>
+                    <p style="text-indent:2em;">
+                        山东省城市商业银行合作联盟有限公司是银监会批准筹建的第一家城商行合作联盟，为方便各成员行快捷获取企业身份认证、企业信息、核验相关人员信息、企业数字签名等能力，特联合可信认证服务平台打造了一个基于联盟ESB系统的电子营业执照系统。为方便管理和数据分析，还配套打造了一套基于若依开源框架的内管系统。
+                    </p>
+                    <h4 class="layui-timeline-title">责任描述：</h4>
+                    <p>
+                        1、负责基于Netty的TCP协议的服务接入组件框架搭建；
+                        <br>2、负责TCP半包、粘包等技术问题的解决；
+                        <br>3、参与服务接入组件和OA系统数据库表设计；
+                        <br>4、负责对Netty框架的调优；
+                        <br>5、负责TCP协议组件与联盟ESB系统的对接；
+                        <br>6、负责基于若依开源框架的OA系统的开发。
+                    </p>
+                </div>
+            </li>
+            <!-- 山东城商行联盟结束 -->
+            <!-- 可信身份存证平台开始 -->
+            <li class="layui-timeline-item">
+                <i class="layui-icon layui-timeline-axis"></i>
+                <div class="layui-timeline-content layui-text">
+                    <h3 class="layui-timeline-title">项目名称：可信身份存证服务平台</h3>
+                    <h4 class="layui-timeline-title">开发周期：2021年02月-至今</h4>
+                    <!--         <h4 class="layui-timeline-title">开发环境：IDEA2019、JDK1.8、达梦数据库、MySQL、Git；</h4>
+                            <h4 class="layui-timeline-title">使用技术：SpringBoot、mybatis等；</h4> -->
+                    <h4 class="layui-timeline-title">项目简介：</h4>
+                    <p style="text-indent:2em;">
+                        可信身份认证平台联合公证处打造了存证平台，具有原文证据保全、哈希证据保全、密文证据保全和结构化证据保全等多种证据保全类型方式，并根据签名主体、认证信息、签名过程等证据链中关键信息，全方位证明签署的文件无篡改、符合法律规定。签订的每一份电子合同都可在权威公证处进行事前存证，当发生纠纷时，通过线上申请的方式，申请由厦门公证处出具的关于电子合同文件的公证函，证明合同原文无篡改。
+                    </p>
+                    <h4 class="layui-timeline-title">责任描述：</h4>
+                    <p>
+                        1、负责与公证处平台的对接；
+                        <br>2、负责项目整体框架和数据库表结构的设计；
+                        <br>3、负责各模块的编码任务；
+                        <br>4、负责客户对接可信身份存证平台的培训和指导。
+                    </p>
+                </div>
+            </li>
+            <!-- 可信身份存证平台结束 -->
+            <!-- 可信开始 -->
+            <li class="layui-timeline-item">
+                <i class="layui-icon layui-timeline-axis"></i>
+                <div class="layui-timeline-content layui-text">
+                    <h3 class="layui-timeline-title">项目名称：可信身份认证服务平台</h3>
+                    <h4 class="layui-timeline-title">开发周期：2020年06月-至今</h4>
+                    <!--         <h4 class="layui-timeline-title">开发环境：IDEA2019、JDK1.8、达梦数据库、MySQL、Git；</h4>
+                            <h4 class="layui-timeline-title">使用技术：SpringBoot、mybatis等；</h4> -->
+                    <h4 class="layui-timeline-title">项目简介：</h4>
+                    <p style="text-indent:2em;">
+                        可信身份认证平台链接国家市场监督管理总局统一信源，判断市场主体是否真实存在及经营状态是否有效。持照人使用电子营业执照办理业务时，通过可信身份认证平台连接验证持照人身份真实性，实时对持照人的授权期限、授权事项进行核验，保证持照人所持电子营业执照在此人、此时、此业务场景下的有效性。
+                    </p>
+                    <h4 class="layui-timeline-title">责任描述：</h4>
+                    <p>
+                        1、负责项目整体的重构；
+                        <br>2、优化各模块代码逻辑；
+                    </p>
+                </div>
+            </li>
+            <!-- 可信结束 -->
+
+
+            <!-- 码上开开始 -->
+            <li class="layui-timeline-item">
+                <i class="layui-icon layui-timeline-axis"></i>
+                <div class="layui-timeline-content layui-text">
+                    <h3 class="layui-timeline-title">项目名称：可信码上开</h3>
+                    <h4 class="layui-timeline-title">开发周期：2020年04月-至今</h4>
+                    <!--         <h4 class="layui-timeline-title">开发环境：IDEA2019、JDK1.8、达梦数据库、MySQL、Git；</h4>
+                            <h4 class="layui-timeline-title">使用技术：SpringBoot、mybatis等；</h4> -->
+                    <h4 class="layui-timeline-title">项目简介：</h4>
+                    <p style="text-indent:2em;">
+                        可信码上开是一款专注于银行开户的解决方案，基于电子营业执照服务，快速完成企业开户，主要分三端：企业客户端、客户经理端、后台管理端。
+                    </p>
+                    <h4 class="layui-timeline-title">责任描述：</h4>
+                    <p>
+                        1、负责项目整体框架和数据库表结构的设计；
+                        <br>2、负责各模块的编码任务；
+                    </p>
+                </div>
+            </li>
+            <!-- 码上开结束 -->
+
+
+            <!-- 我爱我家开始 -->
+            <li class="layui-timeline-item">
+                <i class="layui-icon layui-timeline-axis"></i>
+                <div class="layui-timeline-content layui-text">
+                    <h3 class="layui-timeline-title">项目名称：我爱我家控股集团股份有限公司OA管理系统-电子签章</h3>
+                    <h4 class="layui-timeline-title">开发周期：2019年05月-2020年03月</h4>
+                    <!--         <h4 class="layui-timeline-title">开发环境：Eclipes4.9、JDK1.6、TomCat6.0、Oracle11G、svn；</h4>
+                            <h4 class="layui-timeline-title">使用技术：Spring、TomCat、Dubbo、Oracle等；</h4> -->
+                    <h4 class="layui-timeline-title">项目简介：</h4>
+                    <p style="text-indent:2em;">
+                        我爱我家控股集团股份有限公司为提供线上线下一体化的房地产全产业链综合服务，新增线上签章业务。与契约锁电子合同签署云服务平台对接，不仅为用户提供线上签约服务，还为用户提供具有法律效力的电子签名，并为签约各方提供合同起草、合同审阅、合同保管、证据保全等增值服务。项目基于蓝凌OA管理系统框架，采用可配置的形式动态的获取流程模板的参数值对接契约书生成电子合同服务。
+                    </p>
+                    <h4 class="layui-timeline-title">责任描述：</h4>
+                    <p>
+                        1、负责在蓝凌OA框架基础上新增与契约书电子合同项目对接的模块；
+                        <br>2、负责定制化生成电子合同开发、非定制生成电子合同开发-多方签署、非定制化生成电子合同开发-单方签署、物理用印等模块的开发。
+                    </p>
+                </div>
+            </li>
+            <!-- 我爱我家结束 -->
+            <!-- 想乐时光开始 -->
+            <li class="layui-timeline-item">
+                <i class="layui-icon layui-timeline-axis"></i>
+                <div class="layui-timeline-content layui-text">
+                    <h3 class="layui-timeline-title">项目名称：北京想乐时光旅游有限公司OA管理系统</h3>
+                    <h4 class="layui-timeline-title">开发周期：2019年05月-2020年01月</h4>
+                    <!--         <h4 class="layui-timeline-title">开发环境：IDEA2019、JDK1.8、Maven3.5、Mysql5.5、svn；</h4>
+                            <h4 class="layui-timeline-title">使用技术：SpringMVC、Spring、SpringBoot、Mybatis、SpringDataJPA、Shiro、Poi、FreeMarker等；</h4> -->
+                    <!--         <h4 class="layui-timeline-title">项目简介：</h4>
+                            <p style="text-indent:2em;">
+                              想乐时光，退休生活设计专家，给你最酷的老年生活，想乐大学堂：书法，美术，电脑，合唱，手工，太极，摄影等，想乐老年定制旅行：世界这么大，带您去看看，想乐候鸟式度假养老：海南，云南，千岛湖，五大连池，想乐医疗健康养老:慢病管理，健康保障。项目使用Maven+SpringBoot+Shiro的框架模式，对想乐时光企业员工以及客户进行管理，包括会员管理模块、会员卡管理、组团管理、销售管理、财务管理、报表管理、组织管理等模块。
+                            </p>
+                            <h4 class="layui-timeline-title">责任描述：</h4>
+                            <p>
+                              1、会员模块：旅游团中新建、修改会员信息，以及会员的权益、余额、消费记录、订单记录管理；
+                              <br>2、微信推送模板消息模块：对接微信服务号推送模板消息接口，用于系统发送旅游团、订单、系统通知等消息的模块；
+                              <br>3、12301全国旅游监管服务平台电子合同对接：系统根据订单与12301全国旅游监管服务平台生成电子合同；
+                              <br>4、用户选座模块：用户报名缴费完成之后，在OA系统页面给客户进行分座，方便管理客户，以及导出客人座位列表用于计调对信息进行处理；
+                              <br>5、配合测试部门同事修复系统bug。
+                            </p> -->
+                </div>
+            </li>
+            <!-- 想乐时光结束 -->
+            <!-- 恐龙快乐英语开始 -->
+            <li class="layui-timeline-item">
+                <i class="layui-icon layui-timeline-axis"></i>
+                <div class="layui-timeline-content layui-text">
+                    <h3 class="layui-timeline-title">项目名称：恐龙快乐英语</h3>
+                    <h4 class="layui-timeline-title">开发周期：2018年09月-2019年01月</h4>
+                    <!--         <h4 class="layui-timeline-title">开发环境：Eclipes4.9、JDK1.8、Maven3.5、Mysql5.7、svn；</h4>
+                            <h4 class="layui-timeline-title">使用技术：SpringMVC、Spring、SpringBoot、Mybatis、Dubbo、Redis、RabbitMQ、Nginx、Quartz、Freemarker；</h4> -->
+                    <!--         <h4 class="layui-timeline-title">项目简介：</h4>
+                            <p style="text-indent:2em;">
+                              “恐龙快乐英语”APP是团队倾力打造出针对0-6岁儿童英语启蒙早教软件。产品通过精美的动画视频、互动游戏、儿歌、绘本等孩子喜闻乐见的方式，让孩子在快乐中爱上英语学习，在潜移默化中学会英文表达。产品内容丰富、种类多样，包含单词类动画、剧情类动画、培养孩子养成良好生活习惯的行为引导类动画、绘本、儿歌、互动游戏等；内容范围涉及上百个生活场景、涵盖上千个单词，让孩子在寓教于乐中爱上丰富多样又实用的英语启蒙。项目分为APP端、APP服务端、Web后台管理服务端和统计服务等系统。采用Springboot+mysql+dubbo+zookeeper，rediscluster集群模式，Springboot+freemarker管理后台视频的发布到腾讯云对象存储服务。
+                            </p>
+                            <h4 class="layui-timeline-title">责任描述：</h4>
+                            <p>
+                              1、项目维护；
+                              <br>2、APP服务端：包括会员相关功能、分享相关功能、版本更新功能、APP推送结果数据收集功能；
+                              <br>3、Web后台：套餐管理模块、反馈意见管理模块、课程管理模块、APP管理模块、banner模块、添加会员卡模块、版本信息管理模块、推送消息管理模块；
+                              <br>4、微信小程序客服项目的搭建；
+                              <br>5、微信小程序客服发送图片和图文链接的Server端编码；
+                              <br>6、儿歌比赛活动参赛视频的App端服务编码；
+                              <br>7、儿歌比赛活动参赛视频的Web端服务编码；
+                              <br>8、配合测试部门同事修复系统bug。
+                            </p> -->
+                </div>
+            </li>
+            <!-- 恐龙快乐英语结束 -->
+            <!-- 品位优开始 -->
+            <li class="layui-timeline-item">
+                <i class="layui-icon layui-timeline-axis"></i>
+                <div class="layui-timeline-content layui-text">
+                    <h3 class="layui-timeline-title">项目名称：品位优</h3>
+                    <h4 class="layui-timeline-title">开发周期：2018年09月-2019年01月</h4>
+                    <!--         <h4 class="layui-timeline-title">开发环境：Eclipes4.7、JDK1.7、Maven3.5、Tomcat7.0、Mysql5.5、git2.1；</h4>
+                            <h4 class="layui-timeline-title">使用技术：SpringMVC、Spring、SpringBoot、Mybatis、Angularjs、Redis、FastDFS、ActiveMQ、Solr、Freemarker、Nginx、CAS、Dubbo、Zookeeper；</h4> -->
+                    <!--         <h4 class="layui-timeline-title">项目简介：</h4>
+                            <p style="text-indent:2em;">
+                              品位优是一个专业的综合性 B2B2C 网上购物平台， 销售家电、数码通讯、电脑、家居百货、服装服饰、母婴、图书、食品等众多品牌优质商品。
+                              为消费者提供超值的商品、优惠的价格、 愉悦的网上购物体验以及便捷、诚信的服务。 平台主要分为网站前台、商家管理后台、运营商后台三个子系统。
+                              项目采用分布式架构，主要有运营商后台模块、门户系统、商家后台模块、商品搜索模块、商品详情模块、单点登录系统、购物车模块、订单模块、支付模块等。商家可以提交申请，
+                              由平台进行资质审核，审核通过后，入驻到平台。入住成功后拥有独立的管理后台进行商品录入。用户可以在商城浏览商品、搜索商品、购买商品，以及参加秒杀团购等各种活动。
+                            </p>
+                            <h4 class="layui-timeline-title">责任描述：</h4>
+                            <p>
+                              1、商品模块：包括商品列表查询功能、添加功能、修改功能、删除功能；
+                              <br>2、运用Solr搜索技术，实现商品列表查询功能；
+                              <br>3、运用KindEditor富文本编辑器和FastDFS图片服务器，完成图片上传，实现商品添加和修改功能；
+                              <br>4、运用Freemarker网页静态化技术，实现商品详情页面静态化；
+                              <br>5、购物车模块：包括购物车的商品添加功能、展示购物车商品列表功能、修改购物车商品数量功能、删除购物车商品；
+                              <br>6、运用CORS跨域请求，采用Cookie和Redis技术实现添加购物车的功能；
+                              <br>7、展示购物车商品列表功能；
+                              <br>8、配合测试部门同事修复系统bug。
+                            </p> -->
+                </div>
+            </li>
+            <!-- 品位优结束 -->
+            <li class="layui-timeline-item">
+                <i class="layui-icon layui-timeline-axis"></i>
+                <!--       <div class="layui-timeline-content layui-text">
+                        <div class="layui-timeline-title">......</div>
+                      </div> -->
+            </li>
+        </ul>
+    </div>
+    <!-- 项目经验结束 -->
+
+
+    <!-- 个人技能开始 -->
+    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+        <legend class="layui-text layui-font-black">个人技能</legend>
+    </fieldset>
+    <div class="layui-container layui-row">
+
+
+        <div class="layui-row layui-col-xs12 layui-col-md12 skill-logo-div">
+            <div class="layui-col-xs3 layui-col-md3">
+                <img src="./layui/images/skill/Java.png" class="layui-nav-img skill-logo">
+                <p>Java SE</p>
+                <p class="personal-skills-p">熟练掌握Java基础，具备良好的面向对象的编程思想，具有良好的编码习惯；</p>
+            </div>
+
+            <div class="layui-col-xs3 layui-col-md3">
+                <img src="./layui/images/skill/SpringBoot.png" class="layui-nav-img skill-logo">
+                <p>SpringBoot</p>
+                <p class="personal-skills-p">熟练使用SpringBoot框架；</p>
+            </div>
+
+            <div class="layui-col-xs3 layui-col-md3">
+                <img src="./layui/images/skill/SpringCloud.png" class="layui-nav-img skill-logo">
+                <p>SpringCloud</p>
+                <p class="personal-skills-p">熟练使用SpringCloud框架；</p>
+            </div>
+
+            <div class="layui-col-xs3 layui-col-md3">
+                <img src="./layui/images/skill/Netty.png" class="layui-nav-img skill-logo">
+                <p>Netty</p>
+                <p class="personal-skills-p">熟练使用Netty框架；</p>
+            </div>
+
+        </div>
+
+
+        <div class="layui-row layui-col-xs12 layui-col-md12 skill-logo-div skill-logo-div-next-line">
+
+            <div class="layui-col-xs3 layui-col-md3">
+                <img src="./layui/images/skill/MySQL.png" class="layui-nav-img skill-logo">
+                <p>MySQL</p>
+                <p class="personal-skills-p">熟练使用MySQL等关系型数据库；</p>
+            </div>
+
+
+            <div class="layui-col-xs3 layui-col-md3">
+                <img src="./layui/images/skill/Oracle.png" class="layui-nav-img skill-logo">
+                <p>Oracle</p>
+                <p class="personal-skills-p">熟练使用Oracle等关系型数据库；</p>
+            </div>
+
+            <div class="layui-col-xs3 layui-col-md3">
+                <img src="./layui/images/skill/Redis.png" class="layui-nav-img skill-logo">
+                <p>Redis</p>
+                <p class="personal-skills-p">熟练使用Redis等非关系型数据库；</p>
+            </div>
+
+
+            <div class="layui-col-xs3 layui-col-md3">
+                <img src="./layui/images/skill/FastDFS.png" class="layui-nav-img skill-logo">
+                <p>FastDFS</p>
+                <p class="personal-skills-p">熟悉FastDFS分布式文件上传；</p>
+            </div>
+
+
+        </div>
+
+
+        <div class="layui-row layui-col-xs12 layui-col-md12 skill-logo-div skill-logo-div-next-line">
+
+            <div class="layui-col-xs3 layui-col-md3">
+                <img src="./layui/images/skill/Mybatis.png" class="layui-nav-img skill-logo">
+                <p>Mybatis</p>
+                <p class="personal-skills-p">熟练使用Mybatis框架；</p>
+            </div>
+
+            <div class="layui-col-xs3 layui-col-md3">
+                <img src="./layui/images/skill/Hibernate.png" class="layui-nav-img skill-logo">
+                <p>Hibernate</p>
+                <p class="personal-skills-p">熟悉Hibernate框架的使用方法；</p>
+            </div>
+
+            <div class="layui-col-xs3 layui-col-md3">
+                <img src="./layui/images/skill/Maven.png" class="layui-nav-img skill-logo">
+                <p>Maven</p>
+                <p class="personal-skills-p">熟练使用Maven项目管理工具；</p>
+            </div>
+
+            <div class="layui-col-xs3 layui-col-md3">
+                <img src="./layui/images/skill/Tomcat.png" class="layui-nav-img skill-logo">
+                <p>Tomcat</p>
+                <p class="personal-skills-p">熟练掌握Tomcat软件的部署和配置，有一定使用经验；</p>
+            </div>
+
+        </div>
+
+
+        <div class="layui-row layui-col-xs12 layui-col-md12 skill-logo-div skill-logo-div-next-line">
+
+            <div class="layui-col-xs3 layui-col-md3">
+                <img src="./layui/images/skill/JavaScript.png" class="layui-nav-img skill-logo">
+                <p>JavaScript</p>
+                <p class="personal-skills-p">熟悉JavaScript框架的使用方法；</p>
+            </div>
+
+            <div class="layui-col-xs3 layui-col-md3">
+                <img src="./layui/images/skill/jQuery.png" class="layui-nav-img skill-logo">
+                <p>jQuery</p>
+                <p class="personal-skills-p">熟悉jQuery框架的使用方法；</p>
+            </div>
+
+
+        </div>
+
+    </div>
+    <!-- 个人技能结束 -->
+
+</form>
+
+<footer style="text-align: center;">
+    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+        <p>最新简历信息请访问：<a href="https://niubi666.cn/resume">niubi666.cn/resume</a>&nbsp;&nbsp;账号/密码：resume/lxg123</p>
+    </fieldset>
+</footer>
+</body>
+</html>

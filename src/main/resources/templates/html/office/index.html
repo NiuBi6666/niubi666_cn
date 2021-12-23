@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>文件处理工具</title>
+    <link rel="stylesheet" th:href="@{/layui/css/layui.css}">
+    <link rel="shortcut icon" href="./layui/images/photo/666.png">
+</head>
+<script th:src="@{/layui/layui.js}"></script>
+<body class="layui-bg-black">
+
+
+<div style="text-align: center;border:1px solid #F00">
+
+    <div class="layui-input-block layui-inline" id="fileTrans">
+        <button type="button" class="layui-btn layui-btn-lg layui-btn-primary layui-btn-radius"
+                style="background-color: #D6D6D6;">文件格式转换
+        </button>
+    </div>
+
+    <div class="layui-input-block layui-inline" id="fileToBase64">
+        <button type="button" class="layui-btn layui-btn-lg layui-btn-primary layui-btn-radius"
+                style="background-color: #D6D6D6;">文件转Base64
+        </button>
+    </div>
+
+    <div class="layui-input-block layui-inline" id="base64ToFile">
+        <button type="button" class="layui-btn layui-btn-lg layui-btn-primary layui-btn-radius"
+                style="background-color: #D6D6D6;">Base64转文件
+        </button>
+    </div>
+
+</div>
+
+
+</body>
+<script>
+    layui.use('layer', function () { //独立版的layer无需执行这一句
+        var $ = layui.jquery, layer = layui.layer; //独立版的layer无需执行这一句
+
+        $('#fileTrans .layui-btn').on('click', function () {
+            window.open("office/fileTrans");
+        });
+        $('#fileToBase64 .layui-btn').on('click', function () {
+            window.open("office/fileToBase64");
+        });
+        $('#base64ToFile .layui-btn').on('click', function () {
+            window.open("office/base64ToFile");
+        });
+
+    });
+</script>
+</html>

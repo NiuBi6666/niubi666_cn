@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>PDF文件格式转换</title>
+    <link rel="stylesheet" th:href="@{/layui/css/layui.css}">
+    <link rel="shortcut icon" href="../../../layui/images/photo/666.png">
+</head>
+<script th:src="@{/layui/layui.js}"></script>
+<body>
+<fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+    <legend>PDF文件格式转换</legend>
+</fieldset>
+
+<blockquote class="layui-elem-quote">时间就是性命，无端的空耗别人的时间，其实是无异于谋财害命的。</blockquote>
+
+<div class="layui-form" id="fileTransForm" style="width: 80%;left: 2%;">
+    <div class="layui-form-item">
+        <label class="layui-form-label">文件转换为<label style="color: red">*</label></label>
+        <div class="layui-input-block">
+            <input type="radio" name="suffix" value="jpg" lay-filter="menutype" title="PDF->图片" checked>
+            <input type="radio" name="suffix" value="txt" lay-filter="menutype" title="PDF->TXT">
+            <input type="radio" name="suffix" value="doc" lay-filter="menutype" title="PDF->WORD">
+            <input type="radio" name="suffix" value="pdf" lay-filter="menutype" title="图片->PDF">
+        </div>
+        <div class="layui-form-mid layui-word-aux">不建议将PDF转为WORD，内容格式可能不能保留</div>
+    </div>
+
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">选择文件<label style="color: red">*</label></label>
+        <div class="layui-input-block">
+            <button type="button" class="layui-btn layui-btn-danger layui-btn-radius layui-btn-normal" id="fileTrans"><i
+                    class="layui-icon"></i>上传文件
+            </button>
+        </div>
+    </div>
+
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">分页转换</label>
+        <div class="layui-input-block">
+            <input type="checkbox" name="close" id="pageTrans" lay-skin="switch" lay-filter="pageSwitch"
+                   lay-text="ON|OFF">
+        </div>
+    </div>
+
+    <div id="page" style="display:none;">
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">开始页</label>
+                <div class="layui-input-inline" style="width: 38px;">
+                    <input type="text" name="startPage" id="startPage" autocomplete="off" class="layui-input">
+                </div>
+                <div class="layui-form-mid layui-word-aux">可以不填，默认从第1页开始转换</div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">转换页数</label>
+                <div class="layui-input-inline" style="width: 38px;">
+                    <input type="text" name="length" id="length" autocomplete="off" class="layui-input">
+                </div>
+                <div class="layui-form-mid layui-word-aux">可以不填，默认转换全部</div>
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block layui-inline">
+            <button class="layui-btn layui-btn-radius layui-btn-normal" lay-submit lay-filter="fileTransForm"
+                    id="submit">立即提交
+            </button>
+        </div>
+        <div class="layui-inline" id="downloadDiv">
+            <button class="layui-btn layui-btn-radius layui-btn-normal layui-btn-disabled" lay-submit
+                    lay-filter="download" id="download" data-method="download" value="">下载文件
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+    layui.use(['upload', 'form', 'layer'], function () {
+        var $ = layui.jquery,
+            upload = layui.upload,
+            form = layui.form,
+            layer = layui.layer;
+        var loadIndex = null;
+        //文件上传
+        var uploadInst = upload.render({
+            elem: '#fileTrans'
+            , url: 'format/fileTrans' //改成您自己的上传接口
+            , auto: false
+            , bindAction: '#submit'
+            , size: 10240 //限制文件大小，单位 KB
+            , accept: 'file'
+            , exts: 'pdf|jpg|png|gif|bmp|tif|pcx|tga|exif|fpx|svg|psd|cdr|pcd|dxf|ufo|eps|ai|raw|wmf|webp|avif'
+            , before: function (obj) {
+                loadIndex = layer.load(); //上传loading
+                this.data = {
+                    'suffix': $('input[name="suffix"]:checked').val(),
+                    'startPage': $("#startPage").val(),
+                    'length': $("#length").val(),
+                };
+                console.log(this.data);
+            }
+            , done: function (res) {
+                layer.close(loadIndex);
+                console.log(res);
+                //如果上传失败
+                if (res.code == 200) {
+                    $('#download').removeClass('layui-btn-disabled');
+                    $('#download').attr('value', res.data);
+                    // layer.open({
+                    //     content: 'test',
+                    //     skin: 'layui-layer-ico2',
+                    //     anim: 6
+                    // });
+                    // 感叹号, shift: 6加抖动
+                    // return layer.msg('转换成功，前去下载文件', {icon: 0});
+                    // 对号
+                    // return layer.msg('转换成功，前去下载文件', {icon: 1});
+                    // 错号
+                    // return layer.msg('转换成功，前去下载文件', {icon: 2});
+                    // 问号
+                    // return layer.msg('转换成功，前去下载文件', {icon: 3});
+                    // 锁
+                    // return layer.msg('转换成功，前去下载文件', {icon: 4});
+                    // 哭脸
+                    // return layer.msg('转换成功，前去下载文件', {icon: 5});
+                    // 笑脸
+                    return layer.msg('转换成功，前去下载文件', {icon: 6});
+                } else {
+
+                    return layer.msg(res.message, {icon: 2, shift: 6});
+                    // return layer.msg('上传失败');
+                }
+            }
+        });
+
+        //触发事件
+        var active = {
+            setTop: function () {
+                var that = this;
+
+            }
+            , download: function () {
+                let url = $('#download').val();
+                console.log('下载接口的入参' + url);
+                if (null != url && '' != url) {
+                    window.open("format/download?url=" + encodeURI(url));
+                }
+            }
+
+        };
+
+        $('#downloadDiv .layui-btn').on('click', function () {
+            var othis = $(this), method = othis.data('method');
+            active[method] ? active[method].call(this, othis) : '';
+        });
+
+        //监听指定开关
+        form.on('switch(pageSwitch)', function (data) {
+            if (this.checked) {
+                $('#page').show();
+            } else {
+                $('#page').hide();
+            }
+        });
+
+        // form.on('radio(menutype)', function (data) {
+        //     console.log(data.value);
+        //     if (data.value === 'pdf') {
+        //         exts = 'jpg|png|gif|bmp|tif|pcx|tga|exif|fpx|svg|psd|cdr|pcd|dxf|ufo|eps|ai|raw|wmf|webp|avif';
+        //         console.log(exts);
+        //     } else {
+        //         exts = 'pdf';
+        //         console.log(exts);
+        //     }
+        // });
+
+
+    });
+
+
+</script>
+</body>
+</html>

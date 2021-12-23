@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>login</title>
+    <link rel="stylesheet" th:href="@{/layui/css/layui.css}">
+</head>
+<body>
+<script th:src="@{/layui/layui.js}"></script>
+
+<form class="layui-form" action="/login" method="get">
+    <div class="layui-form-item">
+        <label class="layui-form-label">用户名</label>
+        <div class="layui-input-block">
+            <input type="username" name="username" lay-verify="required" lay-reqtext="用户名是必填项，岂能为空？" placeholder="请输入"
+                   autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">密码</label>
+        <div class="layui-input-block">
+            <input type="password" name="password" lay-verify="title" autocomplete="off" placeholder="请输入标题"
+                   class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item" style="margin-left: 110px">
+        <input class="layui-btn" type="submit" value="登录">
+    </div>
+</form>
+</body>
+</html>
